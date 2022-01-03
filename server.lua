@@ -58,7 +58,7 @@ ESX.RegisterServerCallback('Boutique:DonnePoint', function(source, cb, point, bo
             MySQL.Async.execute("UPDATE `users` SET `boutique_coin`= '".. newpoint .."' WHERE `identifier` = '".. xPlayer.getIdentifier() .."'", {}, function() end)
             MySQL.Async.fetchAll("SELECT * FROM `users` WHERE `boutique_id` = '".. boutique_id .."'", {}, function (result2)
                 local addpoint = result2[1].boutique_coin + tonumber(point)
-                local xPlayer2 = ESX.GetPlayerFromIdentifier(result2[1].license)
+                local xPlayer2 = ESX.GetPlayerFromIdentifier(result2[1].identifier)
                 PerformHttpRequest(discord_webhook.url, function(err, text, headers) end, 'POST', json.encode({username = "Boutique", content = "Transaction : " .. point .. " crédit(s) de la part de " .. xPlayer.getName() .. " a " .. xPlayer2.getName()}), { ['Content-Type'] = 'application/json' })
                 xPlayer2.triggerEvent("Boutique:Notification", "Vous avez recu " .. point .. " crédit(s) de la part de " .. xPlayer.getName())
                 MySQL.Async.execute("UPDATE `users` SET `boutique_coin`= '".. addpoint .."' WHERE `boutique_id` = '".. boutique_id .."'", {}, function() end)
