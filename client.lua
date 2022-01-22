@@ -333,7 +333,7 @@ function OpenBoutique()
 			for k, caisse in pairs(LesCaisse) do
 				RageUI.Button(caisse.name, nil, {RightLabel = "~r~"..tostring(caisse.point).." ~b~"..moneypoints}, true , {
 					onSelected = function()
-
+                        local casewin = ""
 						curentvehicle_name = caisse.name
 						curentvehicle_model = caisse.contenue
 						if codepromo then
@@ -342,38 +342,41 @@ function OpenBoutique()
 						curentvehicle_finalpoint = caisse.point
 						end
 						for _,v in pairs(caisse.contenue) do
-						if pointjoueur >= curentvehicle_finalpoint then
+                            casewin = v
+					    end
+                        if pointjoueur >= curentvehicle_finalpoint then
 							buying(curentvehicle_finalpoint)
-							BuyCaisse(v.itemtype, v.itemname, caisse.name)
+							BuyCaisse(casewin.itemtype, casewin.itemname, caisse.name)
 						else
 							ESX.ShowNotification("~r~Vous n'avez pas assez de fond pour acheter ceci !")
 						end
-					end
-				end
+				    end
 				})
 
             end 
             
 				RageUI.Button("Caisse aléatoire", nil, {RightLabel = "?"}, true , {
 					onSelected = function()
-					local caissealeatoire = math.random(1,#LesCaisse)
+					    local caissealeatoire = math.random(1,#LesCaisse)
+                        local casewin = ""
 						curentvehicle_name = LesCaisse[caissealeatoire].name
 						curentvehicle_model = LesCaisse[caissealeatoire].contenue
 						if codepromo then
-						curentvehicle_finalpoint = LesCaisse[caissealeatoire].point * reduction
+						    curentvehicle_finalpoint = LesCaisse[caissealeatoire].point * reduction
 						else
-						curentvehicle_finalpoint = LesCaisse[caissealeatoire].point
+						    curentvehicle_finalpoint = LesCaisse[caissealeatoire].point
 						end
 						for _,v in pairs(curentvehicle_model) do
-						if pointjoueur >= curentvehicle_finalpoint then
-							buying(curentvehicle_finalpoint)
-							BuyCaisse(v.itemtype, v.itemname, curentvehicle_name)
-						else
-							ESX.ShowNotification("~r~Vous n'avez pas assez de fond pour acheter ceci !")
-						end
-					end
-				end
-			})
+                            casewin = v                        
+					    end
+                        if pointjoueur >= curentvehicle_finalpoint then
+                            buying(curentvehicle_finalpoint)
+                            BuyCaisse(casewin.itemtype, casewin.itemname, curentvehicle_name)
+                        else
+                            ESX.ShowNotification("~r~Vous n'avez pas assez de fond pour acheter ceci !")
+                        end
+				    end
+                    })
 
             end)
 
