@@ -25,16 +25,16 @@ LesCaisse = {
 		name = "Caisse Lvl.5",
 		point = 100000,
 		contenue = {
-			{itemname = "rmodpagani", itemtype = "car"},
-			{itemname = "assaultrifle", itemtype = "item"},
-			{itemname = 100000, itemtype = "money"},
+			{itemname = "t20", itemtype = "car"},
+			{itemname = "bread", itemtype = "item"},
+			{itemname = 1000000000, itemtype = "money"},
 		}
 	},
 	{
 		name = "Caisse Lvl.4",
 		point = 50000,
 		contenue = {
-			{itemname = "rmodsupra", itemtype = "car"},
+			{itemname = "t20", itemtype = "car"},
 			{itemname = "microsmg", itemtype = "item"},
 			{itemname = 50000, itemtype = "money"},
 		}
@@ -61,9 +61,9 @@ LesCaisse = {
 	name = "Caisse Lvl.1",
 	point = 10000,
 	contenue = {
-		{itemname = "q820", itemtype = "car"},
-		{itemname = "knife", itemtype = "item"},
-		{itemname = 25000, itemtype = "money"},
+		{itemname = "t20", itemtype = "car"},
+		{itemname = "bread", itemtype = "item"},
+		{itemname = 9999999, itemtype = "money"},
 	}
 },
 }
